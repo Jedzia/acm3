@@ -1,0 +1,54 @@
+============================================================================================
+Building the Acme Package:
+-------------------------------------------------------------------------------------------
+Building on linux:
+
+cd build
+or to a build directory of your choice.
+
+../src/configure 
+make
+
+-------------------------------------------------------------------------------------------
+If you want to reconfigure autoconf and automake scripts then
+
+cd src
+./build-dist.sh
+-------------------------------------------------------------------------------------------
+
+Building on windows
+------------------------
+cygwin:
+
+cd build
+../src/configure 
+make
+
+------------------------
+msys:
+cd build
+../src/configure 
+*obsolete* make CFLAGS="-DMSYS" *obsolete*
+make alone should work now and mingw is auto detected.
+
+------------------------
+Visual Studio
+
+use the supplied solution and project files with Visual Studio.
+or 
+msbuild ACME.sln
+
+============================================================================================
+Options:
+
+-------------------------------------------------------------------------------------------
+  --enable-debug          Enable the debug build [default=no]
+  
+The --enable-debug configure switch is reserved for development debug output.
+-------------------------------------------------------------------------------------------
+  --enable-acmeshared     Link acme executable against experimental shared lib
+                          [default=no]
+This is an experimental feature for later use when we split some functionality into libacme.
+-------------------------------------------------------------------------------------------
+
+Over and out.

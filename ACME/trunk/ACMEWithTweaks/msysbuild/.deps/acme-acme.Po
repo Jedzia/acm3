@@ -1,0 +1,64 @@
+acme-acme.o: ../src/acme.c sysconfig.h ../src/platform.h ../src/_std.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/stdio.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/include/stddef.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/include/stdarg.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/sys/types.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/stdlib.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/string.h \
+ ../src/acme.h ../src/config.h ../src/alu.h ../src/basics.h \
+ ../src/cliargs.h ../src/cpu.h ../src/dynabuf.h ../src/encoding.h \
+ ../src/flow.h ../src/global.h ../src/input.h ../src/label.h \
+ ../src/macro.h ../src/mnemo.h ../src/output.h ../src/section.h
+
+sysconfig.h:
+
+../src/platform.h:
+
+../src/_std.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/stdio.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/include/stddef.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/include/stdarg.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/sys/types.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/stdlib.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/string.h:
+
+../src/acme.h:
+
+../src/config.h:
+
+../src/alu.h:
+
+../src/basics.h:
+
+../src/cliargs.h:
+
+../src/cpu.h:
+
+../src/dynabuf.h:
+
+../src/encoding.h:
+
+../src/flow.h:
+
+../src/global.h:
+
+../src/input.h:
+
+../src/label.h:
+
+../src/macro.h:
+
+../src/mnemo.h:
+
+../src/output.h:
+
+../src/section.h:

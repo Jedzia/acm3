@@ -1,0 +1,186 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(acme.c)
+AM_CONFIG_HEADER(sysconfig.h:sysconfig.h.in)
+
+AC_CANONICAL_HOST
+
+AM_INIT_AUTOMAKE(acme, 0.94)
+dnl *************************************
+dnl the version info
+dnl *************************************
+version_info="1:94:1"
+release_info="0.94.1"
+AC_SUBST(version_info)
+AC_SUBST(release_info)
+
+AC_DEFINE_UNQUOTED(ACME_API, "$version_info", ACME API Version)
+AC_DEFINE_UNQUOTED(ACME_RELEASE, "$release_info", ACME Release Version)
+
+
+dnl ******************************
+dnl Check if this was SVN source
+dnl ******************************
+if test -d "${srcdir}/.svn" ; then
+       ACME_FROM_SVN=yes
+fi
+AM_CONDITIONAL(SVN_BUILD,[test -d "${srcdir}/.svn"])
+
+
+dnl *************************************
+dnl Libtool
+dnl *************************************
+AC_LIBTOOL_WIN32_DLL
+define([AC_LIBTOOL_LANG_CXX_CONFIG], [:])dnl
+define([AC_LIBTOOL_LANG_F77_CONFIG], [:])dnl
+#AC_PROG_LIBTOOL
+
+
+AC_PROG_LIBTOOL
+AC_PROG_CC
+#AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
+AM_PROG_CC_C_O
+
+if test -z "$host_alias"; then
+    hostaliaswindres=
+else
+    hostaliaswindres="$host_alias-windres"
+fi
+AC_CHECK_PROGS(WINDRES, [windres $hostaliaswindres $host_os-windres])
+AC_SUBST(WINDRES)
+
+
+dnl *************************************
+dnl Extra Debug builds
+dnl *************************************
+AC_ARG_ENABLE(debug,
+AC_HELP_STRING([--enable-debug], [Enable the debug build [[default=no]]]),
+              , enable_debug=no)
+if test x$enable_debug != xno; then
+    AC_DEFINE(ACME_DEBUG, 1, Enable the debug build)
+fi
+
+AM_CONDITIONAL(DEBUG, test "$enable_debug" = yes)
+
+dnl acme executable linked against experimental shared lib
+resx="o"
+AC_ARG_ENABLE(acmeshared,
+AC_HELP_STRING([--enable-acmeshared], [Link acme executable against experimental shared lib [[default=no]]]),
+              , enable_acmeshared=no)
+if test x$enable_acmeshared != xno; then
+    AC_DEFINE(ACME_SHARED, 1, Build and link shared acme exe library)
+resx="lo"
+fi
+
+AM_CONDITIONAL(BUILD_ACMEEXE_SHARED, test "$enable_acmeshared" = yes)
+
+dnl *************************************
+dnl Windows Version Header Stuff
+dnl *************************************
+AM_CONDITIONAL(USE_DLLVERSIONHEADER, false)
+lt_enable_auto_import=""
+case "$host_os" in
+   mingw* | cegcc* | cygwin* )
+      lt_enable_auto_import="-Wl,--enable-auto-import"
+      AM_CONDITIONAL(USE_DLLVERSIONHEADER, true)
+      pg_use_win="-D_WIN32"
+      echo Using windres dll versioning for HOST "$host_os".
+esac
+AC_SUBST(lt_enable_auto_import)
+AC_SUBST(pg_use_win)
+
+
+dnl *************************************
+dnl mingw check
+dnl *************************************
+pg_use_mingw=""
+case "$host_os" in
+   mingw* )
+      pg_use_mingw="-DMSYS"
+esac
+AC_SUBST(pg_use_mingw)
+
+
+#AC_PROG_CC
+#AM_PROG_LEX
+#AC_PROG_YACC
+
+#LT_PROG_RC
+
+dnl *************************************
+dnl function checks
+dnl *************************************
+AC_CHECK_FUNCS(fopen_s fopen, break)
+AC_CHECK_LIB([m],[cos])
+
+AC_OUTPUT(Makefile)
+
+
+
+dnl *************************************
+dnl Promote warnings to errors
+dnl *************************************
+dnl (already done) enable_werror=no
+
+AC_ARG_ENABLE(compile-werror,
+	      [  --enable-compile-werror
+                          Causes warnings to be treated as errors in GCC],
+	      enable_werror=yes)
+if test "x$GCC" = "xyes" -a "x$enable_werror" = "xyes"; then
+	CFLAGS="$CFLAGS -Werror"
+fi
+
+
+dnl *************************************
+dnl Spooky summary
+dnl *************************************
+
+AC_MSG_RESULT([
+  Options detected/selected
+  -------------------------.
+  ACME Version............ : $VERSION
+  ACME API Version........ : $version_info
+  ACME Release Version.... : $release_info
+  Build for host.......... : $host
+  Extra Warnings.......... : $set_compile_warnings
+  Extra Debug Compile..... : $enable_debug
+  CPPFLAGS................ : $CPPFLAGS
+  CFLAGS.................. : $CFLAGS
+
+  Experimental Shared Build
+  -------------------------.
+  Use and link libacme.... : $enable_acmeshared
+
+])
+
+if [[ x"$ACME_FROM_SVN" = xyes ]]; then
+  echo " .----- NOTICE ------------------------------------------------."
+  echo " |         You are using ACME from SVN source.                 |"
+  echo " |                                                             |"
+  echo " | This is likely to be unstable, or contain some incomplete   |"
+  echo " | features, or just plain not work at all. Use it at your own |"
+  echo " | risk. Please help us to fix any bugs you find, by reporting |"
+  echo " | them back to us via email or at the BugTracker page on      |"
+  echo " | http://sourceforge.net/projects/acm3/develop                |"
+  echo " \`-------------------------------------------------------------'"
+  echo ""
+fi
+
+#  Userland Tools
+#  -------------------------.
+#  Build userland tools.... : $enable_conduits
+#  Support for popt........ : $msg_popt
+#  Readline support........ : $msg_readline
+#  PNG support............. : $msg_png
+#
+#  Internal Language Support
+#  -------------------------.
+#  Iconv support........... : $msg_iconv
+#
+#  External Language Support
+#  -------------------------.
+#  TCL support............. : $msg_tcl	$TCL_VERSION
+#  Java support............ : $msg_java	$JAVA_VERSION
+#  Python support.......... : $msg_python $PYTHON_VERSION
+#  Perl support............ : $msg_perl	$PERL_VERSION

@@ -1,0 +1,3737 @@
+Terminals unused in grammar
+
+   INCLUDE
+
+
+State 246 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: units
+
+    2 units: units unit
+    3      | unit
+
+    4 unit: declaration
+    5     | NAME LEFT identifiers RIGHT compstatement
+    6     | NAME NAME LEFT identifiers RIGHT compstatement
+
+    7 statements: statements statement
+    8           | statement
+
+    9 identifiers: /* empty */
+   10            | identifiers COMMA identifier
+   11            | identifier
+
+   12 assignment: identifier ASSIGN expression
+   13           | identifier INC
+   14           | identifier DEC
+   15           | identifier ADDASSIGN expression
+   16           | identifier SUBASSIGN expression
+   17           | identifier MULASSIGN expression
+   18           | identifier DIVASSIGN expression
+   19           | identifier MODASSIGN expression
+   20           | identifier ANDASSIGN expression
+   21           | identifier ORASSIGN expression
+   22           | identifier EORASSIGN expression
+   23           | identifier SHIFTLASSIGN expression
+   24           | identifier SHIFTRASSIGN expression
+
+   25 declaration: CHUNK LEFT expression RIGHT LEFTCOMP expressions RIGHTCOMP
+   26            | FLUSH
+   27            | DATA LEFT expressions RIGHT ENDSTAT
+   28            | LEFTCOMP expressions RIGHTCOMP
+   29            | NAME ALIAS NAME ENDSTAT
+   30            | label DATA LEFT expressions RIGHT ENDSTAT
+   31            | label LEFTCOMP expressions RIGHTCOMP
+   32            | CONSTANT NAME ASSIGN expression
+   33            | CONSTANT NAME expression
+   34            | NAME LEFT identifiers RIGHT ENDSTAT
+   35            | NAME NAME LEFT identifiers RIGHT ENDSTAT
+   36            | EXTERN NAME LEFT identifiers RIGHT ENDSTAT
+   37            | EXTERN NAME NAME LEFT identifiers RIGHT ENDSTAT
+   38            | EXTERN NAME ENDSTAT
+   39            | EXTERN VAR NAME ENDSTAT
+   40            | EXTERN VAR NAME LEFTBR RIGHTBR ENDSTAT
+   41            | VAR NAME ENDSTAT
+   42            | VAR NAME LEFTBR expression RIGHTBR ENDSTAT
+
+   43 compstatement: LEFTCOMP RIGHTCOMP
+   44              | LEFTCOMP statements RIGHTCOMP
+
+   45 statement: ENDSTAT
+   46          | label statement
+   47          | compstatement
+   48          | assignment ENDSTAT
+   49          | LOADPTR LEFT identifier RIGHT ENDSTAT
+   50          | IF LEFT expression RIGHT statement
+   51          | IF LEFT expression RIGHT statement ELSE statement
+   52          | DO statement WHILE LEFT expression RIGHT ENDSTAT
+   53          | WHILE LEFT expression RIGHT statement
+   54          | FOR LEFT assignment ENDSTAT expression ENDSTAT assignment RIGHT statement
+   55          | FOR LEFT ENDSTAT expression ENDSTAT RIGHT statement
+   56          | FOR LEFT ENDSTAT expression ENDSTAT assignment RIGHT statement
+   57          | FOR LEFT assignment ENDSTAT expression ENDSTAT RIGHT statement
+   58          | FOR LEFT ENDSTAT ENDSTAT RIGHT statement
+   59          | FOR LEFT ENDSTAT ENDSTAT assignment RIGHT statement
+   60          | FOR LEFT assignment ENDSTAT ENDSTAT RIGHT statement
+   61          | SWITCH LEFT expression RIGHT statement
+   62          | CASE expression DBLCOLON
+   63          | DEFAULT DBLCOLON
+   64          | NAME LEFT expressions RIGHT ENDSTAT
+   65          | GOTO NAME ENDSTAT
+   66          | RETURN ENDSTAT
+   67          | RETURN LEFT RIGHT ENDSTAT
+   68          | RETURN expression ENDSTAT
+   69          | STOP ENDSTAT
+   70          | STOP LEFT RIGHT ENDSTAT
+   71          | BREAK ENDSTAT
+
+   72 expressions: /* empty */
+   73            | expression
+   74            | expressions COMMA expression
+
+   75 string: STRING
+
+   76 strings: string
+   77        | strings string
+
+   78 label: NAME DBLCOLON
+
+   79 identifier: NAME
+   80           | NAME LEFTBR expression RIGHTBR
+
+   81 expression: expr
+   82           | strings
+   83           | expr EQ expr
+   84           | expr NE expr
+   85           | expr GT expr
+   86           | expr LT expr
+   87           | expr GTE expr
+   88           | expr LTE expr
+   89           | expr BOOLOR expr
+   90           | expr BOOLAND expr
+   91           | BOOLNOT expr
+
+   92 expr: expr2
+   93     | DATA LEFT expressions RIGHT
+   94     | LEFTCOMP expressions RIGHTCOMP
+   95     | NAME LEFT expressions RIGHT
+   96     | expr SHIFTL expr2
+   97     | expr SHIFTR expr2
+   98     | expr EOR expr2
+   99     | expr OR expr2
+  100     | expr AND expr2
+
+  101 expr2: expr3
+  102      | expr2 ADD expr3
+  103      | expr2 SUB expr3
+
+  104 expr3: expr4
+  105      | expr3 MOD expr4
+  106      | expr3 DIV expr4
+  107      | expr3 MUL expr4
+
+  108 expr4: ADD expr4
+  109      | SUB expr4
+  110      | LEFT expression RIGHT
+  111      | NUMBER
+  112      | identifier
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+FLUSH (258) 26
+INCLUDE (259)
+LOADPTR (260) 49
+CHUNK (261) 25
+SWITCH (262) 61
+CASE (263) 62
+DEFAULT (264) 63
+ALIAS (265) 29
+ASSIGN (266) 12 32
+ADDASSIGN (267) 15
+SUBASSIGN (268) 16
+MULASSIGN (269) 17
+DIVASSIGN (270) 18
+MODASSIGN (271) 19
+ANDASSIGN (272) 20
+ORASSIGN (273) 21
+EORASSIGN (274) 22
+SHIFTLASSIGN (275) 23
+SHIFTRASSIGN (276) 24
+EQ (277) 83
+NE (278) 84
+GTE (279) 87
+LTE (280) 88
+GT (281) 85
+LT (282) 86
+INC (283) 13
+DEC (284) 14
+ADD (285) 102 108
+SUB (286) 103 109
+MUL (287) 107
+DIV (288) 106
+MOD (289) 105
+AND (290) 100
+OR (291) 99
+BOOLAND (292) 90
+BOOLOR (293) 89
+BOOLNOT (294) 91
+EOR (295) 98
+LEFT (296) 5 6 25 27 30 34 35 36 37 49 50 51 52 53 54 55 56 57 58 59
+    60 61 64 67 70 93 95 110
+RIGHT (297) 5 6 25 27 30 34 35 36 37 49 50 51 52 53 54 55 56 57 58
+    59 60 61 64 67 70 93 95 110
+LEFTBR (298) 40 42 80
+RIGHTBR (299) 40 42 80
+LEFTCOMP (300) 25 28 31 43 44 94
+RIGHTCOMP (301) 25 28 31 43 44 94
+SHIFTL (302) 96
+SHIFTR (303) 97
+COMMA (304) 10 74
+DBLCOLON (305) 62 63 78
+CONSTANT (306) 32 33
+VAR (307) 39 40 41 42
+EXTERN (308) 36 37 38 39 40
+ENDSTAT (309) 27 29 30 34 35 36 37 38 39 40 41 42 45 48 49 52 54 55
+    56 57 58 59 60 64 65 66 67 68 69 70 71
+IF (310) 50 51
+ELSE (311) 51
+WHILE (312) 52 53
+DO (313) 52
+FOR (314) 54 55 56 57 58 59 60
+GOTO (315) 65
+DATA (316) 27 30 93
+STOP (317) 69 70
+BREAK (318) 71
+RETURN (319) 66 67 68
+NUMBER (320) 111
+NAME (321) 5 6 29 32 33 34 35 36 37 38 39 40 41 42 64 65 78 79 80 95
+STRING (322) 75
+
+
+Nonterminals, with rules where they appear
+
+$accept (68)
+    on left: 0
+program (69)
+    on left: 1, on right: 0
+units (70)
+    on left: 2 3, on right: 1 2
+unit (71)
+    on left: 4 5 6, on right: 2 3
+statements (72)
+    on left: 7 8, on right: 7 44
+identifiers (73)
+    on left: 9 10 11, on right: 5 6 10 34 35 36 37
+assignment (74)
+    on left: 12 13 14 15 16 17 18 19 20 21 22 23 24, on right: 48 54
+    56 57 59 60
+declaration (75)
+    on left: 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42,
+    on right: 4
+compstatement (76)
+    on left: 43 44, on right: 5 6 47
+statement (77)
+    on left: 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62
+    63 64 65 66 67 68 69 70 71, on right: 7 8 46 50 51 52 53 54 55
+    56 57 58 59 60 61
+expressions (78)
+    on left: 72 73 74, on right: 25 27 28 30 31 64 74 93 94 95
+string (79)
+    on left: 75, on right: 76 77
+strings (80)
+    on left: 76 77, on right: 77 82
+label (81)
+    on left: 78, on right: 30 31 46
+identifier (82)
+    on left: 79 80, on right: 10 11 12 13 14 15 16 17 18 19 20 21 22
+    23 24 49 112
+expression (83)
+    on left: 81 82 83 84 85 86 87 88 89 90 91, on right: 12 15 16 17
+    18 19 20 21 22 23 24 25 32 33 42 50 51 52 53 54 55 56 57 61 62
+    68 73 74 80 110
+expr (84)
+    on left: 92 93 94 95 96 97 98 99 100, on right: 81 83 84 85 86
+    87 88 89 90 91 96 97 98 99 100
+expr2 (85)
+    on left: 101 102 103, on right: 92 96 97 98 99 100 102 103
+expr3 (86)
+    on left: 104 105 106 107, on right: 101 102 103 105 106 107
+expr4 (87)
+    on left: 108 109 110 111 112, on right: 104 105 106 107 108 109
+
+
+state 0
+
+    0 $accept: . program $end
+
+    FLUSH     shift, and go to state 1
+    CHUNK     shift, and go to state 2
+    LEFTCOMP  shift, and go to state 3
+    CONSTANT  shift, and go to state 4
+    VAR       shift, and go to state 5
+    EXTERN    shift, and go to state 6
+    DATA      shift, and go to state 7
+    NAME      shift, and go to state 8
+
+    program      go to state 9
+    units        go to state 10
+    unit         go to state 11
+    declaration  go to state 12
+    label        go to state 13
+
+
+state 1
+
+   26 declaration: FLUSH .
+
+    $default  reduce using rule 26 (declaration)
+
+
+state 2
+
+   25 declaration: CHUNK . LEFT expression RIGHT LEFTCOMP expressions RIGHTCOMP
+
+    LEFT  shift, and go to state 14
+
+
+state 3
+
+   28 declaration: LEFTCOMP . expressions RIGHTCOMP
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 24
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 4
+
+   32 declaration: CONSTANT . NAME ASSIGN expression
+   33            | CONSTANT . NAME expression
+
+    NAME  shift, and go to state 33
+
+
+state 5
+
+   41 declaration: VAR . NAME ENDSTAT
+   42            | VAR . NAME LEFTBR expression RIGHTBR ENDSTAT
+
+    NAME  shift, and go to state 34
+
+
+state 6
+
+   36 declaration: EXTERN . NAME LEFT identifiers RIGHT ENDSTAT
+   37            | EXTERN . NAME NAME LEFT identifiers RIGHT ENDSTAT
+   38            | EXTERN . NAME ENDSTAT
+   39            | EXTERN . VAR NAME ENDSTAT
+   40            | EXTERN . VAR NAME LEFTBR RIGHTBR ENDSTAT
+
+    VAR   shift, and go to state 35
+    NAME  shift, and go to state 36
+
+
+state 7
+
+   27 declaration: DATA . LEFT expressions RIGHT ENDSTAT
+
+    LEFT  shift, and go to state 37
+
+
+state 8
+
+    5 unit: NAME . LEFT identifiers RIGHT compstatement
+    6     | NAME . NAME LEFT identifiers RIGHT compstatement
+   29 declaration: NAME . ALIAS NAME ENDSTAT
+   34            | NAME . LEFT identifiers RIGHT ENDSTAT
+   35            | NAME . NAME LEFT identifiers RIGHT ENDSTAT
+   78 label: NAME . DBLCOLON
+
+    ALIAS     shift, and go to state 38
+    LEFT      shift, and go to state 39
+    DBLCOLON  shift, and go to state 40
+    NAME      shift, and go to state 41
+
+
+state 9
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 42
+
+
+state 10
+
+    1 program: units .
+    2 units: units . unit
+
+    FLUSH     shift, and go to state 1
+    CHUNK     shift, and go to state 2
+    LEFTCOMP  shift, and go to state 3
+    CONSTANT  shift, and go to state 4
+    VAR       shift, and go to state 5
+    EXTERN    shift, and go to state 6
+    DATA      shift, and go to state 7
+    NAME      shift, and go to state 8
+
+    $default  reduce using rule 1 (program)
+
+    unit         go to state 43
+    declaration  go to state 12
+    label        go to state 13
+
+
+state 11
+
+    3 units: unit .
+
+    $default  reduce using rule 3 (units)
+
+
+state 12
+
+    4 unit: declaration .
+
+    $default  reduce using rule 4 (unit)
+
+
+state 13
+
+   30 declaration: label . DATA LEFT expressions RIGHT ENDSTAT
+   31            | label . LEFTCOMP expressions RIGHTCOMP
+
+    LEFTCOMP  shift, and go to state 44
+    DATA      shift, and go to state 45
+
+
+state 14
+
+   25 declaration: CHUNK LEFT . expression RIGHT LEFTCOMP expressions RIGHTCOMP
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 46
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 15
+
+  108 expr4: ADD . expr4
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr4       go to state 48
+
+
+state 16
+
+  109 expr4: SUB . expr4
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr4       go to state 49
+
+
+state 17
+
+   91 expression: BOOLNOT . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 50
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 18
+
+  110 expr4: LEFT . expression RIGHT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 51
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 19
+
+   94 expr: LEFTCOMP . expressions RIGHTCOMP
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 52
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 20
+
+   93 expr: DATA . LEFT expressions RIGHT
+
+    LEFT  shift, and go to state 53
+
+
+state 21
+
+  111 expr4: NUMBER .
+
+    $default  reduce using rule 111 (expr4)
+
+
+state 22
+
+   79 identifier: NAME .
+   80           | NAME . LEFTBR expression RIGHTBR
+   95 expr: NAME . LEFT expressions RIGHT
+
+    LEFT    shift, and go to state 54
+    LEFTBR  shift, and go to state 55
+
+    $default  reduce using rule 79 (identifier)
+
+
+state 23
+
+   75 string: STRING .
+
+    $default  reduce using rule 75 (string)
+
+
+state 24
+
+   28 declaration: LEFTCOMP expressions . RIGHTCOMP
+   74 expressions: expressions . COMMA expression
+
+    RIGHTCOMP  shift, and go to state 56
+    COMMA      shift, and go to state 57
+
+
+state 25
+
+   76 strings: string .
+
+    $default  reduce using rule 76 (strings)
+
+
+state 26
+
+   77 strings: strings . string
+   82 expression: strings .
+
+    STRING  shift, and go to state 23
+
+    $default  reduce using rule 82 (expression)
+
+    string  go to state 58
+
+
+state 27
+
+  112 expr4: identifier .
+
+    $default  reduce using rule 112 (expr4)
+
+
+state 28
+
+   73 expressions: expression .
+
+    $default  reduce using rule 73 (expressions)
+
+
+state 29
+
+   81 expression: expr .
+   83           | expr . EQ expr
+   84           | expr . NE expr
+   85           | expr . GT expr
+   86           | expr . LT expr
+   87           | expr . GTE expr
+   88           | expr . LTE expr
+   89           | expr . BOOLOR expr
+   90           | expr . BOOLAND expr
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    EQ       shift, and go to state 59
+    NE       shift, and go to state 60
+    GTE      shift, and go to state 61
+    LTE      shift, and go to state 62
+    GT       shift, and go to state 63
+    LT       shift, and go to state 64
+    AND      shift, and go to state 65
+    OR       shift, and go to state 66
+    BOOLAND  shift, and go to state 67
+    BOOLOR   shift, and go to state 68
+    EOR      shift, and go to state 69
+    SHIFTL   shift, and go to state 70
+    SHIFTR   shift, and go to state 71
+
+    $default  reduce using rule 81 (expression)
+
+
+state 30
+
+   92 expr: expr2 .
+  102 expr2: expr2 . ADD expr3
+  103      | expr2 . SUB expr3
+
+    ADD  shift, and go to state 72
+    SUB  shift, and go to state 73
+
+    $default  reduce using rule 92 (expr)
+
+
+state 31
+
+  101 expr2: expr3 .
+  105 expr3: expr3 . MOD expr4
+  106      | expr3 . DIV expr4
+  107      | expr3 . MUL expr4
+
+    MUL  shift, and go to state 74
+    DIV  shift, and go to state 75
+    MOD  shift, and go to state 76
+
+    $default  reduce using rule 101 (expr2)
+
+
+state 32
+
+  104 expr3: expr4 .
+
+    $default  reduce using rule 104 (expr3)
+
+
+state 33
+
+   32 declaration: CONSTANT NAME . ASSIGN expression
+   33            | CONSTANT NAME . expression
+
+    ASSIGN    shift, and go to state 77
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 78
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 34
+
+   41 declaration: VAR NAME . ENDSTAT
+   42            | VAR NAME . LEFTBR expression RIGHTBR ENDSTAT
+
+    LEFTBR   shift, and go to state 79
+    ENDSTAT  shift, and go to state 80
+
+
+state 35
+
+   39 declaration: EXTERN VAR . NAME ENDSTAT
+   40            | EXTERN VAR . NAME LEFTBR RIGHTBR ENDSTAT
+
+    NAME  shift, and go to state 81
+
+
+state 36
+
+   36 declaration: EXTERN NAME . LEFT identifiers RIGHT ENDSTAT
+   37            | EXTERN NAME . NAME LEFT identifiers RIGHT ENDSTAT
+   38            | EXTERN NAME . ENDSTAT
+
+    LEFT     shift, and go to state 82
+    ENDSTAT  shift, and go to state 83
+    NAME     shift, and go to state 84
+
+
+state 37
+
+   27 declaration: DATA LEFT . expressions RIGHT ENDSTAT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 85
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 38
+
+   29 declaration: NAME ALIAS . NAME ENDSTAT
+
+    NAME  shift, and go to state 86
+
+
+state 39
+
+    5 unit: NAME LEFT . identifiers RIGHT compstatement
+   34 declaration: NAME LEFT . identifiers RIGHT ENDSTAT
+
+    NAME  shift, and go to state 47
+
+    $default  reduce using rule 9 (identifiers)
+
+    identifiers  go to state 87
+    identifier   go to state 88
+
+
+state 40
+
+   78 label: NAME DBLCOLON .
+
+    $default  reduce using rule 78 (label)
+
+
+state 41
+
+    6 unit: NAME NAME . LEFT identifiers RIGHT compstatement
+   35 declaration: NAME NAME . LEFT identifiers RIGHT ENDSTAT
+
+    LEFT  shift, and go to state 89
+
+
+state 42
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+state 43
+
+    2 units: units unit .
+
+    $default  reduce using rule 2 (units)
+
+
+state 44
+
+   31 declaration: label LEFTCOMP . expressions RIGHTCOMP
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 90
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 45
+
+   30 declaration: label DATA . LEFT expressions RIGHT ENDSTAT
+
+    LEFT  shift, and go to state 91
+
+
+state 46
+
+   25 declaration: CHUNK LEFT expression . RIGHT LEFTCOMP expressions RIGHTCOMP
+
+    RIGHT  shift, and go to state 92
+
+
+state 47
+
+   79 identifier: NAME .
+   80           | NAME . LEFTBR expression RIGHTBR
+
+    LEFTBR  shift, and go to state 55
+
+    $default  reduce using rule 79 (identifier)
+
+
+state 48
+
+  108 expr4: ADD expr4 .
+
+    $default  reduce using rule 108 (expr4)
+
+
+state 49
+
+  109 expr4: SUB expr4 .
+
+    $default  reduce using rule 109 (expr4)
+
+
+state 50
+
+   91 expression: BOOLNOT expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 91 (expression)
+
+
+state 51
+
+  110 expr4: LEFT expression . RIGHT
+
+    RIGHT  shift, and go to state 93
+
+
+state 52
+
+   74 expressions: expressions . COMMA expression
+   94 expr: LEFTCOMP expressions . RIGHTCOMP
+
+    RIGHTCOMP  shift, and go to state 94
+    COMMA      shift, and go to state 57
+
+
+state 53
+
+   93 expr: DATA LEFT . expressions RIGHT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 95
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 54
+
+   95 expr: NAME LEFT . expressions RIGHT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 96
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 55
+
+   80 identifier: NAME LEFTBR . expression RIGHTBR
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 97
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 56
+
+   28 declaration: LEFTCOMP expressions RIGHTCOMP .
+
+    $default  reduce using rule 28 (declaration)
+
+
+state 57
+
+   74 expressions: expressions COMMA . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 98
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 58
+
+   77 strings: strings string .
+
+    $default  reduce using rule 77 (strings)
+
+
+state 59
+
+   83 expression: expr EQ . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 99
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 60
+
+   84 expression: expr NE . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 100
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 61
+
+   87 expression: expr GTE . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 101
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 62
+
+   88 expression: expr LTE . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 102
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 63
+
+   85 expression: expr GT . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 103
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 64
+
+   86 expression: expr LT . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 104
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 65
+
+  100 expr: expr AND . expr2
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr2       go to state 105
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 66
+
+   99 expr: expr OR . expr2
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr2       go to state 106
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 67
+
+   90 expression: expr BOOLAND . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 107
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 68
+
+   89 expression: expr BOOLOR . expr
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+
+    identifier  go to state 27
+    expr        go to state 108
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 69
+
+   98 expr: expr EOR . expr2
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr2       go to state 109
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 70
+
+   96 expr: expr SHIFTL . expr2
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr2       go to state 110
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 71
+
+   97 expr: expr SHIFTR . expr2
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr2       go to state 111
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 72
+
+  102 expr2: expr2 ADD . expr3
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr3       go to state 112
+    expr4       go to state 32
+
+
+state 73
+
+  103 expr2: expr2 SUB . expr3
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr3       go to state 113
+    expr4       go to state 32
+
+
+state 74
+
+  107 expr3: expr3 MUL . expr4
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr4       go to state 114
+
+
+state 75
+
+  106 expr3: expr3 DIV . expr4
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr4       go to state 115
+
+
+state 76
+
+  105 expr3: expr3 MOD . expr4
+
+    ADD     shift, and go to state 15
+    SUB     shift, and go to state 16
+    LEFT    shift, and go to state 18
+    NUMBER  shift, and go to state 21
+    NAME    shift, and go to state 47
+
+    identifier  go to state 27
+    expr4       go to state 116
+
+
+state 77
+
+   32 declaration: CONSTANT NAME ASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 117
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 78
+
+   33 declaration: CONSTANT NAME expression .
+
+    $default  reduce using rule 33 (declaration)
+
+
+state 79
+
+   42 declaration: VAR NAME LEFTBR . expression RIGHTBR ENDSTAT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 118
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 80
+
+   41 declaration: VAR NAME ENDSTAT .
+
+    $default  reduce using rule 41 (declaration)
+
+
+state 81
+
+   39 declaration: EXTERN VAR NAME . ENDSTAT
+   40            | EXTERN VAR NAME . LEFTBR RIGHTBR ENDSTAT
+
+    LEFTBR   shift, and go to state 119
+    ENDSTAT  shift, and go to state 120
+
+
+state 82
+
+   36 declaration: EXTERN NAME LEFT . identifiers RIGHT ENDSTAT
+
+    NAME  shift, and go to state 47
+
+    $default  reduce using rule 9 (identifiers)
+
+    identifiers  go to state 121
+    identifier   go to state 88
+
+
+state 83
+
+   38 declaration: EXTERN NAME ENDSTAT .
+
+    $default  reduce using rule 38 (declaration)
+
+
+state 84
+
+   37 declaration: EXTERN NAME NAME . LEFT identifiers RIGHT ENDSTAT
+
+    LEFT  shift, and go to state 122
+
+
+state 85
+
+   27 declaration: DATA LEFT expressions . RIGHT ENDSTAT
+   74 expressions: expressions . COMMA expression
+
+    RIGHT  shift, and go to state 123
+    COMMA  shift, and go to state 57
+
+
+state 86
+
+   29 declaration: NAME ALIAS NAME . ENDSTAT
+
+    ENDSTAT  shift, and go to state 124
+
+
+state 87
+
+    5 unit: NAME LEFT identifiers . RIGHT compstatement
+   10 identifiers: identifiers . COMMA identifier
+   34 declaration: NAME LEFT identifiers . RIGHT ENDSTAT
+
+    RIGHT  shift, and go to state 125
+    COMMA  shift, and go to state 126
+
+
+state 88
+
+   11 identifiers: identifier .
+
+    $default  reduce using rule 11 (identifiers)
+
+
+state 89
+
+    6 unit: NAME NAME LEFT . identifiers RIGHT compstatement
+   35 declaration: NAME NAME LEFT . identifiers RIGHT ENDSTAT
+
+    NAME  shift, and go to state 47
+
+    $default  reduce using rule 9 (identifiers)
+
+    identifiers  go to state 127
+    identifier   go to state 88
+
+
+state 90
+
+   31 declaration: label LEFTCOMP expressions . RIGHTCOMP
+   74 expressions: expressions . COMMA expression
+
+    RIGHTCOMP  shift, and go to state 128
+    COMMA      shift, and go to state 57
+
+
+state 91
+
+   30 declaration: label DATA LEFT . expressions RIGHT ENDSTAT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 129
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 92
+
+   25 declaration: CHUNK LEFT expression RIGHT . LEFTCOMP expressions RIGHTCOMP
+
+    LEFTCOMP  shift, and go to state 130
+
+
+state 93
+
+  110 expr4: LEFT expression RIGHT .
+
+    $default  reduce using rule 110 (expr4)
+
+
+state 94
+
+   94 expr: LEFTCOMP expressions RIGHTCOMP .
+
+    $default  reduce using rule 94 (expr)
+
+
+state 95
+
+   74 expressions: expressions . COMMA expression
+   93 expr: DATA LEFT expressions . RIGHT
+
+    RIGHT  shift, and go to state 131
+    COMMA  shift, and go to state 57
+
+
+state 96
+
+   74 expressions: expressions . COMMA expression
+   95 expr: NAME LEFT expressions . RIGHT
+
+    RIGHT  shift, and go to state 132
+    COMMA  shift, and go to state 57
+
+
+state 97
+
+   80 identifier: NAME LEFTBR expression . RIGHTBR
+
+    RIGHTBR  shift, and go to state 133
+
+
+state 98
+
+   74 expressions: expressions COMMA expression .
+
+    $default  reduce using rule 74 (expressions)
+
+
+state 99
+
+   83 expression: expr EQ expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 83 (expression)
+
+
+state 100
+
+   84 expression: expr NE expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 84 (expression)
+
+
+state 101
+
+   87 expression: expr GTE expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 87 (expression)
+
+
+state 102
+
+   88 expression: expr LTE expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 88 (expression)
+
+
+state 103
+
+   85 expression: expr GT expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 85 (expression)
+
+
+state 104
+
+   86 expression: expr LT expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 86 (expression)
+
+
+state 105
+
+  100 expr: expr AND expr2 .
+  102 expr2: expr2 . ADD expr3
+  103      | expr2 . SUB expr3
+
+    ADD  shift, and go to state 72
+    SUB  shift, and go to state 73
+
+    $default  reduce using rule 100 (expr)
+
+
+state 106
+
+   99 expr: expr OR expr2 .
+  102 expr2: expr2 . ADD expr3
+  103      | expr2 . SUB expr3
+
+    ADD  shift, and go to state 72
+    SUB  shift, and go to state 73
+
+    $default  reduce using rule 99 (expr)
+
+
+state 107
+
+   90 expression: expr BOOLAND expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 90 (expression)
+
+
+state 108
+
+   89 expression: expr BOOLOR expr .
+   96 expr: expr . SHIFTL expr2
+   97     | expr . SHIFTR expr2
+   98     | expr . EOR expr2
+   99     | expr . OR expr2
+  100     | expr . AND expr2
+
+    AND     shift, and go to state 65
+    OR      shift, and go to state 66
+    EOR     shift, and go to state 69
+    SHIFTL  shift, and go to state 70
+    SHIFTR  shift, and go to state 71
+
+    $default  reduce using rule 89 (expression)
+
+
+state 109
+
+   98 expr: expr EOR expr2 .
+  102 expr2: expr2 . ADD expr3
+  103      | expr2 . SUB expr3
+
+    ADD  shift, and go to state 72
+    SUB  shift, and go to state 73
+
+    $default  reduce using rule 98 (expr)
+
+
+state 110
+
+   96 expr: expr SHIFTL expr2 .
+  102 expr2: expr2 . ADD expr3
+  103      | expr2 . SUB expr3
+
+    ADD  shift, and go to state 72
+    SUB  shift, and go to state 73
+
+    $default  reduce using rule 96 (expr)
+
+
+state 111
+
+   97 expr: expr SHIFTR expr2 .
+  102 expr2: expr2 . ADD expr3
+  103      | expr2 . SUB expr3
+
+    ADD  shift, and go to state 72
+    SUB  shift, and go to state 73
+
+    $default  reduce using rule 97 (expr)
+
+
+state 112
+
+  102 expr2: expr2 ADD expr3 .
+  105 expr3: expr3 . MOD expr4
+  106      | expr3 . DIV expr4
+  107      | expr3 . MUL expr4
+
+    MUL  shift, and go to state 74
+    DIV  shift, and go to state 75
+    MOD  shift, and go to state 76
+
+    $default  reduce using rule 102 (expr2)
+
+
+state 113
+
+  103 expr2: expr2 SUB expr3 .
+  105 expr3: expr3 . MOD expr4
+  106      | expr3 . DIV expr4
+  107      | expr3 . MUL expr4
+
+    MUL  shift, and go to state 74
+    DIV  shift, and go to state 75
+    MOD  shift, and go to state 76
+
+    $default  reduce using rule 103 (expr2)
+
+
+state 114
+
+  107 expr3: expr3 MUL expr4 .
+
+    $default  reduce using rule 107 (expr3)
+
+
+state 115
+
+  106 expr3: expr3 DIV expr4 .
+
+    $default  reduce using rule 106 (expr3)
+
+
+state 116
+
+  105 expr3: expr3 MOD expr4 .
+
+    $default  reduce using rule 105 (expr3)
+
+
+state 117
+
+   32 declaration: CONSTANT NAME ASSIGN expression .
+
+    $default  reduce using rule 32 (declaration)
+
+
+state 118
+
+   42 declaration: VAR NAME LEFTBR expression . RIGHTBR ENDSTAT
+
+    RIGHTBR  shift, and go to state 134
+
+
+state 119
+
+   40 declaration: EXTERN VAR NAME LEFTBR . RIGHTBR ENDSTAT
+
+    RIGHTBR  shift, and go to state 135
+
+
+state 120
+
+   39 declaration: EXTERN VAR NAME ENDSTAT .
+
+    $default  reduce using rule 39 (declaration)
+
+
+state 121
+
+   10 identifiers: identifiers . COMMA identifier
+   36 declaration: EXTERN NAME LEFT identifiers . RIGHT ENDSTAT
+
+    RIGHT  shift, and go to state 136
+    COMMA  shift, and go to state 126
+
+
+state 122
+
+   37 declaration: EXTERN NAME NAME LEFT . identifiers RIGHT ENDSTAT
+
+    NAME  shift, and go to state 47
+
+    $default  reduce using rule 9 (identifiers)
+
+    identifiers  go to state 137
+    identifier   go to state 88
+
+
+state 123
+
+   27 declaration: DATA LEFT expressions RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 138
+
+
+state 124
+
+   29 declaration: NAME ALIAS NAME ENDSTAT .
+
+    $default  reduce using rule 29 (declaration)
+
+
+state 125
+
+    5 unit: NAME LEFT identifiers RIGHT . compstatement
+   34 declaration: NAME LEFT identifiers RIGHT . ENDSTAT
+
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 140
+
+    compstatement  go to state 141
+
+
+state 126
+
+   10 identifiers: identifiers COMMA . identifier
+
+    NAME  shift, and go to state 47
+
+    identifier  go to state 142
+
+
+state 127
+
+    6 unit: NAME NAME LEFT identifiers . RIGHT compstatement
+   10 identifiers: identifiers . COMMA identifier
+   35 declaration: NAME NAME LEFT identifiers . RIGHT ENDSTAT
+
+    RIGHT  shift, and go to state 143
+    COMMA  shift, and go to state 126
+
+
+state 128
+
+   31 declaration: label LEFTCOMP expressions RIGHTCOMP .
+
+    $default  reduce using rule 31 (declaration)
+
+
+state 129
+
+   30 declaration: label DATA LEFT expressions . RIGHT ENDSTAT
+   74 expressions: expressions . COMMA expression
+
+    RIGHT  shift, and go to state 144
+    COMMA  shift, and go to state 57
+
+
+state 130
+
+   25 declaration: CHUNK LEFT expression RIGHT LEFTCOMP . expressions RIGHTCOMP
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 145
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 131
+
+   93 expr: DATA LEFT expressions RIGHT .
+
+    $default  reduce using rule 93 (expr)
+
+
+state 132
+
+   95 expr: NAME LEFT expressions RIGHT .
+
+    $default  reduce using rule 95 (expr)
+
+
+state 133
+
+   80 identifier: NAME LEFTBR expression RIGHTBR .
+
+    $default  reduce using rule 80 (identifier)
+
+
+state 134
+
+   42 declaration: VAR NAME LEFTBR expression RIGHTBR . ENDSTAT
+
+    ENDSTAT  shift, and go to state 146
+
+
+state 135
+
+   40 declaration: EXTERN VAR NAME LEFTBR RIGHTBR . ENDSTAT
+
+    ENDSTAT  shift, and go to state 147
+
+
+state 136
+
+   36 declaration: EXTERN NAME LEFT identifiers RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 148
+
+
+state 137
+
+   10 identifiers: identifiers . COMMA identifier
+   37 declaration: EXTERN NAME NAME LEFT identifiers . RIGHT ENDSTAT
+
+    RIGHT  shift, and go to state 149
+    COMMA  shift, and go to state 126
+
+
+state 138
+
+   27 declaration: DATA LEFT expressions RIGHT ENDSTAT .
+
+    $default  reduce using rule 27 (declaration)
+
+
+state 139
+
+   43 compstatement: LEFTCOMP . RIGHTCOMP
+   44              | LEFTCOMP . statements RIGHTCOMP
+
+    LOADPTR    shift, and go to state 150
+    SWITCH     shift, and go to state 151
+    CASE       shift, and go to state 152
+    DEFAULT    shift, and go to state 153
+    LEFTCOMP   shift, and go to state 139
+    RIGHTCOMP  shift, and go to state 154
+    ENDSTAT    shift, and go to state 155
+    IF         shift, and go to state 156
+    WHILE      shift, and go to state 157
+    DO         shift, and go to state 158
+    FOR        shift, and go to state 159
+    GOTO       shift, and go to state 160
+    STOP       shift, and go to state 161
+    BREAK      shift, and go to state 162
+    RETURN     shift, and go to state 163
+    NAME       shift, and go to state 164
+
+    statements     go to state 165
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 168
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 140
+
+   34 declaration: NAME LEFT identifiers RIGHT ENDSTAT .
+
+    $default  reduce using rule 34 (declaration)
+
+
+state 141
+
+    5 unit: NAME LEFT identifiers RIGHT compstatement .
+
+    $default  reduce using rule 5 (unit)
+
+
+state 142
+
+   10 identifiers: identifiers COMMA identifier .
+
+    $default  reduce using rule 10 (identifiers)
+
+
+state 143
+
+    6 unit: NAME NAME LEFT identifiers RIGHT . compstatement
+   35 declaration: NAME NAME LEFT identifiers RIGHT . ENDSTAT
+
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 171
+
+    compstatement  go to state 172
+
+
+state 144
+
+   30 declaration: label DATA LEFT expressions RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 173
+
+
+state 145
+
+   25 declaration: CHUNK LEFT expression RIGHT LEFTCOMP expressions . RIGHTCOMP
+   74 expressions: expressions . COMMA expression
+
+    RIGHTCOMP  shift, and go to state 174
+    COMMA      shift, and go to state 57
+
+
+state 146
+
+   42 declaration: VAR NAME LEFTBR expression RIGHTBR ENDSTAT .
+
+    $default  reduce using rule 42 (declaration)
+
+
+state 147
+
+   40 declaration: EXTERN VAR NAME LEFTBR RIGHTBR ENDSTAT .
+
+    $default  reduce using rule 40 (declaration)
+
+
+state 148
+
+   36 declaration: EXTERN NAME LEFT identifiers RIGHT ENDSTAT .
+
+    $default  reduce using rule 36 (declaration)
+
+
+state 149
+
+   37 declaration: EXTERN NAME NAME LEFT identifiers RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 175
+
+
+state 150
+
+   49 statement: LOADPTR . LEFT identifier RIGHT ENDSTAT
+
+    LEFT  shift, and go to state 176
+
+
+state 151
+
+   61 statement: SWITCH . LEFT expression RIGHT statement
+
+    LEFT  shift, and go to state 177
+
+
+state 152
+
+   62 statement: CASE . expression DBLCOLON
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 178
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 153
+
+   63 statement: DEFAULT . DBLCOLON
+
+    DBLCOLON  shift, and go to state 179
+
+
+state 154
+
+   43 compstatement: LEFTCOMP RIGHTCOMP .
+
+    $default  reduce using rule 43 (compstatement)
+
+
+state 155
+
+   45 statement: ENDSTAT .
+
+    $default  reduce using rule 45 (statement)
+
+
+state 156
+
+   50 statement: IF . LEFT expression RIGHT statement
+   51          | IF . LEFT expression RIGHT statement ELSE statement
+
+    LEFT  shift, and go to state 180
+
+
+state 157
+
+   53 statement: WHILE . LEFT expression RIGHT statement
+
+    LEFT  shift, and go to state 181
+
+
+state 158
+
+   52 statement: DO . statement WHILE LEFT expression RIGHT ENDSTAT
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 182
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 159
+
+   54 statement: FOR . LEFT assignment ENDSTAT expression ENDSTAT assignment RIGHT statement
+   55          | FOR . LEFT ENDSTAT expression ENDSTAT RIGHT statement
+   56          | FOR . LEFT ENDSTAT expression ENDSTAT assignment RIGHT statement
+   57          | FOR . LEFT assignment ENDSTAT expression ENDSTAT RIGHT statement
+   58          | FOR . LEFT ENDSTAT ENDSTAT RIGHT statement
+   59          | FOR . LEFT ENDSTAT ENDSTAT assignment RIGHT statement
+   60          | FOR . LEFT assignment ENDSTAT ENDSTAT RIGHT statement
+
+    LEFT  shift, and go to state 183
+
+
+state 160
+
+   65 statement: GOTO . NAME ENDSTAT
+
+    NAME  shift, and go to state 184
+
+
+state 161
+
+   69 statement: STOP . ENDSTAT
+   70          | STOP . LEFT RIGHT ENDSTAT
+
+    LEFT     shift, and go to state 185
+    ENDSTAT  shift, and go to state 186
+
+
+state 162
+
+   71 statement: BREAK . ENDSTAT
+
+    ENDSTAT  shift, and go to state 187
+
+
+state 163
+
+   66 statement: RETURN . ENDSTAT
+   67          | RETURN . LEFT RIGHT ENDSTAT
+   68          | RETURN . expression ENDSTAT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 188
+    LEFTCOMP  shift, and go to state 19
+    ENDSTAT   shift, and go to state 189
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 190
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 164
+
+   64 statement: NAME . LEFT expressions RIGHT ENDSTAT
+   78 label: NAME . DBLCOLON
+   79 identifier: NAME .
+   80           | NAME . LEFTBR expression RIGHTBR
+
+    LEFT      shift, and go to state 191
+    LEFTBR    shift, and go to state 55
+    DBLCOLON  shift, and go to state 40
+
+    $default  reduce using rule 79 (identifier)
+
+
+state 165
+
+    7 statements: statements . statement
+   44 compstatement: LEFTCOMP statements . RIGHTCOMP
+
+    LOADPTR    shift, and go to state 150
+    SWITCH     shift, and go to state 151
+    CASE       shift, and go to state 152
+    DEFAULT    shift, and go to state 153
+    LEFTCOMP   shift, and go to state 139
+    RIGHTCOMP  shift, and go to state 192
+    ENDSTAT    shift, and go to state 155
+    IF         shift, and go to state 156
+    WHILE      shift, and go to state 157
+    DO         shift, and go to state 158
+    FOR        shift, and go to state 159
+    GOTO       shift, and go to state 160
+    STOP       shift, and go to state 161
+    BREAK      shift, and go to state 162
+    RETURN     shift, and go to state 163
+    NAME       shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 193
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 166
+
+   48 statement: assignment . ENDSTAT
+
+    ENDSTAT  shift, and go to state 194
+
+
+state 167
+
+   47 statement: compstatement .
+
+    $default  reduce using rule 47 (statement)
+
+
+state 168
+
+    8 statements: statement .
+
+    $default  reduce using rule 8 (statements)
+
+
+state 169
+
+   46 statement: label . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 195
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 170
+
+   12 assignment: identifier . ASSIGN expression
+   13           | identifier . INC
+   14           | identifier . DEC
+   15           | identifier . ADDASSIGN expression
+   16           | identifier . SUBASSIGN expression
+   17           | identifier . MULASSIGN expression
+   18           | identifier . DIVASSIGN expression
+   19           | identifier . MODASSIGN expression
+   20           | identifier . ANDASSIGN expression
+   21           | identifier . ORASSIGN expression
+   22           | identifier . EORASSIGN expression
+   23           | identifier . SHIFTLASSIGN expression
+   24           | identifier . SHIFTRASSIGN expression
+
+    ASSIGN        shift, and go to state 196
+    ADDASSIGN     shift, and go to state 197
+    SUBASSIGN     shift, and go to state 198
+    MULASSIGN     shift, and go to state 199
+    DIVASSIGN     shift, and go to state 200
+    MODASSIGN     shift, and go to state 201
+    ANDASSIGN     shift, and go to state 202
+    ORASSIGN      shift, and go to state 203
+    EORASSIGN     shift, and go to state 204
+    SHIFTLASSIGN  shift, and go to state 205
+    SHIFTRASSIGN  shift, and go to state 206
+    INC           shift, and go to state 207
+    DEC           shift, and go to state 208
+
+
+state 171
+
+   35 declaration: NAME NAME LEFT identifiers RIGHT ENDSTAT .
+
+    $default  reduce using rule 35 (declaration)
+
+
+state 172
+
+    6 unit: NAME NAME LEFT identifiers RIGHT compstatement .
+
+    $default  reduce using rule 6 (unit)
+
+
+state 173
+
+   30 declaration: label DATA LEFT expressions RIGHT ENDSTAT .
+
+    $default  reduce using rule 30 (declaration)
+
+
+state 174
+
+   25 declaration: CHUNK LEFT expression RIGHT LEFTCOMP expressions RIGHTCOMP .
+
+    $default  reduce using rule 25 (declaration)
+
+
+state 175
+
+   37 declaration: EXTERN NAME NAME LEFT identifiers RIGHT ENDSTAT .
+
+    $default  reduce using rule 37 (declaration)
+
+
+state 176
+
+   49 statement: LOADPTR LEFT . identifier RIGHT ENDSTAT
+
+    NAME  shift, and go to state 47
+
+    identifier  go to state 209
+
+
+state 177
+
+   61 statement: SWITCH LEFT . expression RIGHT statement
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 210
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 178
+
+   62 statement: CASE expression . DBLCOLON
+
+    DBLCOLON  shift, and go to state 211
+
+
+state 179
+
+   63 statement: DEFAULT DBLCOLON .
+
+    $default  reduce using rule 63 (statement)
+
+
+state 180
+
+   50 statement: IF LEFT . expression RIGHT statement
+   51          | IF LEFT . expression RIGHT statement ELSE statement
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 212
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 181
+
+   53 statement: WHILE LEFT . expression RIGHT statement
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 213
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 182
+
+   52 statement: DO statement . WHILE LEFT expression RIGHT ENDSTAT
+
+    WHILE  shift, and go to state 214
+
+
+state 183
+
+   54 statement: FOR LEFT . assignment ENDSTAT expression ENDSTAT assignment RIGHT statement
+   55          | FOR LEFT . ENDSTAT expression ENDSTAT RIGHT statement
+   56          | FOR LEFT . ENDSTAT expression ENDSTAT assignment RIGHT statement
+   57          | FOR LEFT . assignment ENDSTAT expression ENDSTAT RIGHT statement
+   58          | FOR LEFT . ENDSTAT ENDSTAT RIGHT statement
+   59          | FOR LEFT . ENDSTAT ENDSTAT assignment RIGHT statement
+   60          | FOR LEFT . assignment ENDSTAT ENDSTAT RIGHT statement
+
+    ENDSTAT  shift, and go to state 215
+    NAME     shift, and go to state 47
+
+    assignment  go to state 216
+    identifier  go to state 170
+
+
+state 184
+
+   65 statement: GOTO NAME . ENDSTAT
+
+    ENDSTAT  shift, and go to state 217
+
+
+state 185
+
+   70 statement: STOP LEFT . RIGHT ENDSTAT
+
+    RIGHT  shift, and go to state 218
+
+
+state 186
+
+   69 statement: STOP ENDSTAT .
+
+    $default  reduce using rule 69 (statement)
+
+
+state 187
+
+   71 statement: BREAK ENDSTAT .
+
+    $default  reduce using rule 71 (statement)
+
+
+state 188
+
+   67 statement: RETURN LEFT . RIGHT ENDSTAT
+  110 expr4: LEFT . expression RIGHT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    RIGHT     shift, and go to state 219
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 51
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 189
+
+   66 statement: RETURN ENDSTAT .
+
+    $default  reduce using rule 66 (statement)
+
+
+state 190
+
+   68 statement: RETURN expression . ENDSTAT
+
+    ENDSTAT  shift, and go to state 220
+
+
+state 191
+
+   64 statement: NAME LEFT . expressions RIGHT ENDSTAT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    $default  reduce using rule 72 (expressions)
+
+    expressions  go to state 221
+    string       go to state 25
+    strings      go to state 26
+    identifier   go to state 27
+    expression   go to state 28
+    expr         go to state 29
+    expr2        go to state 30
+    expr3        go to state 31
+    expr4        go to state 32
+
+
+state 192
+
+   44 compstatement: LEFTCOMP statements RIGHTCOMP .
+
+    $default  reduce using rule 44 (compstatement)
+
+
+state 193
+
+    7 statements: statements statement .
+
+    $default  reduce using rule 7 (statements)
+
+
+state 194
+
+   48 statement: assignment ENDSTAT .
+
+    $default  reduce using rule 48 (statement)
+
+
+state 195
+
+   46 statement: label statement .
+
+    $default  reduce using rule 46 (statement)
+
+
+state 196
+
+   12 assignment: identifier ASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 222
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 197
+
+   15 assignment: identifier ADDASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 223
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 198
+
+   16 assignment: identifier SUBASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 224
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 199
+
+   17 assignment: identifier MULASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 225
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 200
+
+   18 assignment: identifier DIVASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 226
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 201
+
+   19 assignment: identifier MODASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 227
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 202
+
+   20 assignment: identifier ANDASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 228
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 203
+
+   21 assignment: identifier ORASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 229
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 204
+
+   22 assignment: identifier EORASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 230
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 205
+
+   23 assignment: identifier SHIFTLASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 231
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 206
+
+   24 assignment: identifier SHIFTRASSIGN . expression
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 232
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 207
+
+   13 assignment: identifier INC .
+
+    $default  reduce using rule 13 (assignment)
+
+
+state 208
+
+   14 assignment: identifier DEC .
+
+    $default  reduce using rule 14 (assignment)
+
+
+state 209
+
+   49 statement: LOADPTR LEFT identifier . RIGHT ENDSTAT
+
+    RIGHT  shift, and go to state 233
+
+
+state 210
+
+   61 statement: SWITCH LEFT expression . RIGHT statement
+
+    RIGHT  shift, and go to state 234
+
+
+state 211
+
+   62 statement: CASE expression DBLCOLON .
+
+    $default  reduce using rule 62 (statement)
+
+
+state 212
+
+   50 statement: IF LEFT expression . RIGHT statement
+   51          | IF LEFT expression . RIGHT statement ELSE statement
+
+    RIGHT  shift, and go to state 235
+
+
+state 213
+
+   53 statement: WHILE LEFT expression . RIGHT statement
+
+    RIGHT  shift, and go to state 236
+
+
+state 214
+
+   52 statement: DO statement WHILE . LEFT expression RIGHT ENDSTAT
+
+    LEFT  shift, and go to state 237
+
+
+state 215
+
+   55 statement: FOR LEFT ENDSTAT . expression ENDSTAT RIGHT statement
+   56          | FOR LEFT ENDSTAT . expression ENDSTAT assignment RIGHT statement
+   58          | FOR LEFT ENDSTAT . ENDSTAT RIGHT statement
+   59          | FOR LEFT ENDSTAT . ENDSTAT assignment RIGHT statement
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    ENDSTAT   shift, and go to state 238
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 239
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 216
+
+   54 statement: FOR LEFT assignment . ENDSTAT expression ENDSTAT assignment RIGHT statement
+   57          | FOR LEFT assignment . ENDSTAT expression ENDSTAT RIGHT statement
+   60          | FOR LEFT assignment . ENDSTAT ENDSTAT RIGHT statement
+
+    ENDSTAT  shift, and go to state 240
+
+
+state 217
+
+   65 statement: GOTO NAME ENDSTAT .
+
+    $default  reduce using rule 65 (statement)
+
+
+state 218
+
+   70 statement: STOP LEFT RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 241
+
+
+state 219
+
+   67 statement: RETURN LEFT RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 242
+
+
+state 220
+
+   68 statement: RETURN expression ENDSTAT .
+
+    $default  reduce using rule 68 (statement)
+
+
+state 221
+
+   64 statement: NAME LEFT expressions . RIGHT ENDSTAT
+   74 expressions: expressions . COMMA expression
+
+    RIGHT  shift, and go to state 243
+    COMMA  shift, and go to state 57
+
+
+state 222
+
+   12 assignment: identifier ASSIGN expression .
+
+    $default  reduce using rule 12 (assignment)
+
+
+state 223
+
+   15 assignment: identifier ADDASSIGN expression .
+
+    $default  reduce using rule 15 (assignment)
+
+
+state 224
+
+   16 assignment: identifier SUBASSIGN expression .
+
+    $default  reduce using rule 16 (assignment)
+
+
+state 225
+
+   17 assignment: identifier MULASSIGN expression .
+
+    $default  reduce using rule 17 (assignment)
+
+
+state 226
+
+   18 assignment: identifier DIVASSIGN expression .
+
+    $default  reduce using rule 18 (assignment)
+
+
+state 227
+
+   19 assignment: identifier MODASSIGN expression .
+
+    $default  reduce using rule 19 (assignment)
+
+
+state 228
+
+   20 assignment: identifier ANDASSIGN expression .
+
+    $default  reduce using rule 20 (assignment)
+
+
+state 229
+
+   21 assignment: identifier ORASSIGN expression .
+
+    $default  reduce using rule 21 (assignment)
+
+
+state 230
+
+   22 assignment: identifier EORASSIGN expression .
+
+    $default  reduce using rule 22 (assignment)
+
+
+state 231
+
+   23 assignment: identifier SHIFTLASSIGN expression .
+
+    $default  reduce using rule 23 (assignment)
+
+
+state 232
+
+   24 assignment: identifier SHIFTRASSIGN expression .
+
+    $default  reduce using rule 24 (assignment)
+
+
+state 233
+
+   49 statement: LOADPTR LEFT identifier RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 244
+
+
+state 234
+
+   61 statement: SWITCH LEFT expression RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 245
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 235
+
+   50 statement: IF LEFT expression RIGHT . statement
+   51          | IF LEFT expression RIGHT . statement ELSE statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 246
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 236
+
+   53 statement: WHILE LEFT expression RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 247
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 237
+
+   52 statement: DO statement WHILE LEFT . expression RIGHT ENDSTAT
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 248
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 238
+
+   58 statement: FOR LEFT ENDSTAT ENDSTAT . RIGHT statement
+   59          | FOR LEFT ENDSTAT ENDSTAT . assignment RIGHT statement
+
+    RIGHT  shift, and go to state 249
+    NAME   shift, and go to state 47
+
+    assignment  go to state 250
+    identifier  go to state 170
+
+
+state 239
+
+   55 statement: FOR LEFT ENDSTAT expression . ENDSTAT RIGHT statement
+   56          | FOR LEFT ENDSTAT expression . ENDSTAT assignment RIGHT statement
+
+    ENDSTAT  shift, and go to state 251
+
+
+state 240
+
+   54 statement: FOR LEFT assignment ENDSTAT . expression ENDSTAT assignment RIGHT statement
+   57          | FOR LEFT assignment ENDSTAT . expression ENDSTAT RIGHT statement
+   60          | FOR LEFT assignment ENDSTAT . ENDSTAT RIGHT statement
+
+    ADD       shift, and go to state 15
+    SUB       shift, and go to state 16
+    BOOLNOT   shift, and go to state 17
+    LEFT      shift, and go to state 18
+    LEFTCOMP  shift, and go to state 19
+    ENDSTAT   shift, and go to state 252
+    DATA      shift, and go to state 20
+    NUMBER    shift, and go to state 21
+    NAME      shift, and go to state 22
+    STRING    shift, and go to state 23
+
+    string      go to state 25
+    strings     go to state 26
+    identifier  go to state 27
+    expression  go to state 253
+    expr        go to state 29
+    expr2       go to state 30
+    expr3       go to state 31
+    expr4       go to state 32
+
+
+state 241
+
+   70 statement: STOP LEFT RIGHT ENDSTAT .
+
+    $default  reduce using rule 70 (statement)
+
+
+state 242
+
+   67 statement: RETURN LEFT RIGHT ENDSTAT .
+
+    $default  reduce using rule 67 (statement)
+
+
+state 243
+
+   64 statement: NAME LEFT expressions RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 254
+
+
+state 244
+
+   49 statement: LOADPTR LEFT identifier RIGHT ENDSTAT .
+
+    $default  reduce using rule 49 (statement)
+
+
+state 245
+
+   61 statement: SWITCH LEFT expression RIGHT statement .
+
+    $default  reduce using rule 61 (statement)
+
+
+state 246
+
+   50 statement: IF LEFT expression RIGHT statement .
+   51          | IF LEFT expression RIGHT statement . ELSE statement
+
+    ELSE  shift, and go to state 255
+
+    ELSE      [reduce using rule 50 (statement)]
+    $default  reduce using rule 50 (statement)
+
+
+state 247
+
+   53 statement: WHILE LEFT expression RIGHT statement .
+
+    $default  reduce using rule 53 (statement)
+
+
+state 248
+
+   52 statement: DO statement WHILE LEFT expression . RIGHT ENDSTAT
+
+    RIGHT  shift, and go to state 256
+
+
+state 249
+
+   58 statement: FOR LEFT ENDSTAT ENDSTAT RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 257
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 250
+
+   59 statement: FOR LEFT ENDSTAT ENDSTAT assignment . RIGHT statement
+
+    RIGHT  shift, and go to state 258
+
+
+state 251
+
+   55 statement: FOR LEFT ENDSTAT expression ENDSTAT . RIGHT statement
+   56          | FOR LEFT ENDSTAT expression ENDSTAT . assignment RIGHT statement
+
+    RIGHT  shift, and go to state 259
+    NAME   shift, and go to state 47
+
+    assignment  go to state 260
+    identifier  go to state 170
+
+
+state 252
+
+   60 statement: FOR LEFT assignment ENDSTAT ENDSTAT . RIGHT statement
+
+    RIGHT  shift, and go to state 261
+
+
+state 253
+
+   54 statement: FOR LEFT assignment ENDSTAT expression . ENDSTAT assignment RIGHT statement
+   57          | FOR LEFT assignment ENDSTAT expression . ENDSTAT RIGHT statement
+
+    ENDSTAT  shift, and go to state 262
+
+
+state 254
+
+   64 statement: NAME LEFT expressions RIGHT ENDSTAT .
+
+    $default  reduce using rule 64 (statement)
+
+
+state 255
+
+   51 statement: IF LEFT expression RIGHT statement ELSE . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 263
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 256
+
+   52 statement: DO statement WHILE LEFT expression RIGHT . ENDSTAT
+
+    ENDSTAT  shift, and go to state 264
+
+
+state 257
+
+   58 statement: FOR LEFT ENDSTAT ENDSTAT RIGHT statement .
+
+    $default  reduce using rule 58 (statement)
+
+
+state 258
+
+   59 statement: FOR LEFT ENDSTAT ENDSTAT assignment RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 265
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 259
+
+   55 statement: FOR LEFT ENDSTAT expression ENDSTAT RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 266
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 260
+
+   56 statement: FOR LEFT ENDSTAT expression ENDSTAT assignment . RIGHT statement
+
+    RIGHT  shift, and go to state 267
+
+
+state 261
+
+   60 statement: FOR LEFT assignment ENDSTAT ENDSTAT RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 268
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 262
+
+   54 statement: FOR LEFT assignment ENDSTAT expression ENDSTAT . assignment RIGHT statement
+   57          | FOR LEFT assignment ENDSTAT expression ENDSTAT . RIGHT statement
+
+    RIGHT  shift, and go to state 269
+    NAME   shift, and go to state 47
+
+    assignment  go to state 270
+    identifier  go to state 170
+
+
+state 263
+
+   51 statement: IF LEFT expression RIGHT statement ELSE statement .
+
+    $default  reduce using rule 51 (statement)
+
+
+state 264
+
+   52 statement: DO statement WHILE LEFT expression RIGHT ENDSTAT .
+
+    $default  reduce using rule 52 (statement)
+
+
+state 265
+
+   59 statement: FOR LEFT ENDSTAT ENDSTAT assignment RIGHT statement .
+
+    $default  reduce using rule 59 (statement)
+
+
+state 266
+
+   55 statement: FOR LEFT ENDSTAT expression ENDSTAT RIGHT statement .
+
+    $default  reduce using rule 55 (statement)
+
+
+state 267
+
+   56 statement: FOR LEFT ENDSTAT expression ENDSTAT assignment RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 271
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 268
+
+   60 statement: FOR LEFT assignment ENDSTAT ENDSTAT RIGHT statement .
+
+    $default  reduce using rule 60 (statement)
+
+
+state 269
+
+   57 statement: FOR LEFT assignment ENDSTAT expression ENDSTAT RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 272
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 270
+
+   54 statement: FOR LEFT assignment ENDSTAT expression ENDSTAT assignment . RIGHT statement
+
+    RIGHT  shift, and go to state 273
+
+
+state 271
+
+   56 statement: FOR LEFT ENDSTAT expression ENDSTAT assignment RIGHT statement .
+
+    $default  reduce using rule 56 (statement)
+
+
+state 272
+
+   57 statement: FOR LEFT assignment ENDSTAT expression ENDSTAT RIGHT statement .
+
+    $default  reduce using rule 57 (statement)
+
+
+state 273
+
+   54 statement: FOR LEFT assignment ENDSTAT expression ENDSTAT assignment RIGHT . statement
+
+    LOADPTR   shift, and go to state 150
+    SWITCH    shift, and go to state 151
+    CASE      shift, and go to state 152
+    DEFAULT   shift, and go to state 153
+    LEFTCOMP  shift, and go to state 139
+    ENDSTAT   shift, and go to state 155
+    IF        shift, and go to state 156
+    WHILE     shift, and go to state 157
+    DO        shift, and go to state 158
+    FOR       shift, and go to state 159
+    GOTO      shift, and go to state 160
+    STOP      shift, and go to state 161
+    BREAK     shift, and go to state 162
+    RETURN    shift, and go to state 163
+    NAME      shift, and go to state 164
+
+    assignment     go to state 166
+    compstatement  go to state 167
+    statement      go to state 274
+    label          go to state 169
+    identifier     go to state 170
+
+
+state 274
+
+   54 statement: FOR LEFT assignment ENDSTAT expression ENDSTAT assignment RIGHT statement .
+
+    $default  reduce using rule 54 (statement)

@@ -1,0 +1,2 @@
+Parsing version number
+./acme -V | head -1 | cut -d"," -f3

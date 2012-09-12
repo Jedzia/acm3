@@ -1,0 +1,59 @@
+                                  PSID64 NEWS
+                                  ===========
+
+psid64-0.8 (Sat Feb 24 20:22:00 CET 2007):
+
+* Built-in support for Exomizer.
+* Added support for a joystick in port two to control the player.
+* Added clock to indicated running time.
+* Added -i option to override the initial song to play.
+* Added support for SID tunes written in BASIC.
+
+psid64-0.7 (Thu May  5 12:13:44 CEST 2005):
+
+* Improved RSID compatibility.
+* Use INST/DEL to toggle screen on and off.
+* Use + and - keys to select next and previous song respectively.
+* Display the song number of song currently being played.
+* Show all 31 characters of the PSID header.
+* Fixed NMI bank register bug.
+* Pass default song number via boot loader.
+
+psid64-0.6 (Tue Apr 22 21:02:56 CEST 2003):
+
+* Ported all code to C++.
+* Created the libpsid64 library.
+* Fixed some small incompatibility problems.
+
+psid64-0.5 (Thu Nov  7 23:12:41 CET 2002):
+
+* Added preliminary support of RSID format.
+* Implemented screen blanking to improve audio quality when using the RF
+  modulated output of your C64.
+* Implemented feature request 534453: handle init functions that jump to $A7AE.
+* Extended information line area: show the intended SID model and video mode.
+* Updated source code to automake 1.6.3 and gcc 3.2.
+
+psid64-0.4 (Sun Mar 24 14:46:54 CET 2002):
+
+* Display STIL information if available.
+* Fixed a number of potential problems related to the bank selection register.
+
+psid64-0.3 (Sun Nov 11 11:27:02 CET 2001):
+
+* Fixed a classic bug in release 0.2. On Windows machines without Cygwin
+  installed, all files are treated as text files by default. This results in
+  corrupt program files where a carriage return character is inserted before
+  each new line character.
+
+psid64-0.2 (Sat Nov 10 13:15:45 CET 2001):
+
+* Ported to Windows/Cygwin platform.
+* Supports screens located in the memory ranges $4000-$8000 and $c000-$d000.
+* Supports long option formats on systems with getopt_long().
+* Possible to specify multiple PSID files to be converted on the command line.
+
+
+psid64-0.1 (Sat Sep  8 13:10:56 CEST 2001):
+
+* Initial release.

@@ -1,0 +1,5 @@
+Version 0.94.0.0:
+
+- Docs to be written.
+- USE_FOPEN_S for vs builds (a working one, hehe)
+- Use AC_CONFIG_HEADERS instead of AM_CONFIG_HEADER

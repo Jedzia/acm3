@@ -1,0 +1,506 @@
+2007-02-24  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* NEWS: completed info for release 0.8
+
+	* psid64.spec.in: Fedora packaging guidelines and rpmlint fixes
+
+	* psid64.spec.in:
+	Prefer use of DESTDIR over %makeinstall (see Fedora packaging guidelines)
+
+2007-02-05  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/psid64.cpp: check length; not song number
+
+	* src/libpsid64/psid64.cpp: initialize pointer with NULL instead of 0
+
+2007-02-04  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/screen.cpp:
+	initialize all member variables of class Screen
+
+	* src/libpsid64/psid64.cpp:
+	initialize all member variables of class PSID64
+
+	* src/libpsid64/reloc65.cpp: removed unused parameter
+
+	* src/libpsid64/reloc65.cpp: removed unused variables
+
+	* include/psid64/psid64.h:
+	Define a copy constructor and an assignment operator for class PSID64 to comply with Effective C++ rule 11
+
+	* psid64.spec.in:
+	Upgraded to RPM 4.4. Separate development package for header files and libraries.
+
+	* src/libpsid64/psid64.cpp: use consistent terminology
+
+	* src/libpsid64/psidextdrv.h: fixed debug issue
+
+	* src/libpsid64/psid64.cpp:
+	replaced generic info about PSID64 by key usage
+
+	* src/libpsid64/psiddrv.a65, src/libpsid64/psidextdrv.h:
+	three instead of two lines above the scroller do not contain any text and therefore can be used for the smooth scroll
+
+	* src/libpsid64/screen.h:
+	translate tilde sign (~) into arrow left character
+
+	* src/libpsid64/screen.cpp, src/libpsid64/screen.h:
+	added putchar() method for writing a single character to the screen
+
+	* src/libpsid64/psiddrv.a65, src/libpsid64/psiddrv.h, src/libpsid64/psidextdrv.h:
+	fixed bug in determining the number of keyboard scans
+
+	* README: added references to djcross-gcc and upx
+
+2007-01-21  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/psid64.cpp: fixed problem with compressed BASIC songs
+
+2007-01-20  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* include/psid64/psid64.h, src/libpsid64/psid64.cpp, NEWS:
+	added support for SID tunes written in BASIC
+
+2006-10-21  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/sidtune/SidTune.cpp:
+	updated to revision 1.37 in sidplay2 repository
+
+2006-10-15  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/ConsoleApp.cpp: sort options in help text
+
+	* NEWS, src/libpsid64/psid64.cpp, include/psid64/psid64.h, src/ConsoleApp.cpp:
+	added -i option to override the initial song to play
+
+	* src/libpsid64/psid64.cpp: fixed comment typo
+
+	* include/psid64/psid64.h, src/libpsid64/screen.h:
+	Removed extra qualifications that give compilations problems with GCC 4.1.1
+
+2005-06-07  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* include/psid64/psid64.h, src/ConsoleApp.cpp, src/libpsid64/psid64.cpp, src/libpsid64/reloc65.cpp:
+	fixed some (potential) memory leakage errors
+
+	* README: added section on known problems and limitations
+
+	* src/libpsid64/psiddrv.a65, include/psid64/psid64.h, src/libpsid64/psid64.cpp, src/libpsid64/psidboot.a65, src/libpsid64/psidboot.h, src/libpsid64/psidextdrv.h, NEWS:
+	added clock to indicate running time
+
+2005-06-05  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/sidutils/ini/.cvsignore, include/sidplay/.cvsignore:
+	ignore generated files
+
+	* src/.cvsignore: added psid64 and stamp-h1
+
+	* src/.cvsignore: added .deps
+
+	* src/sidutils/.cvsignore, src/sidutils/MD5/.cvsignore, src/libpsid64/.cvsignore, src/sidtune/.cvsignore, .cvsignore, src/.cvsignore:
+	ignore generated files
+
+	* src/libpsid64/psiddrv.a65, src/libpsid64/psidextdrv.h:
+	unselect all keyboard scan rows before reading joystick to prevent interference
+
+	* src/libpsid64/Makefile.am, src/libpsid64/psid64.cpp, include/psid64/psid64.h, src/ConsoleApp.cpp, NEWS, README, TODO:
+	added Exomizer support
+
+	* src/libpsid64/exomizer/exomizer.c, src/libpsid64/exomizer/exomizer.h, src/libpsid64/exomizer/log.h:
+	based on Exomizer 1.1.5 source
+
+	* src/libpsid64/exomizer/chunkpool.c, src/libpsid64/exomizer/chunkpool.h, src/libpsid64/exomizer/match.c, src/libpsid64/exomizer/match.h, src/libpsid64/exomizer/optimal.c, src/libpsid64/exomizer/optimal.h, src/libpsid64/exomizer/output.c, src/libpsid64/exomizer/output.h, src/libpsid64/exomizer/radix.c, src/libpsid64/exomizer/radix.h, src/libpsid64/exomizer/search.c, src/libpsid64/exomizer/search.h, src/libpsid64/exomizer/sfx.h, src/libpsid64/exomizer/sfx64ne.c:
+	Exomizer 1.1.5 source
+
+2005-06-04  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/psid64.cpp, src/libpsid64/screen.cpp, src/libpsid64/screen.h, src/ConsoleApp.cpp:
+	prefer preincrement over postincrement
+
+2005-05-28  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* configure.ac: increased version number
+
+	* README, src/libpsid64/psiddrv.a65, src/libpsid64/psidextdrv.h:
+	move joystick to the right to restart current song
+
+2005-05-26  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/psidextdrv.h, NEWS, README, src/libpsid64/psiddrv.a65:
+	Added support for a joystick in port two to control the player
+
+2005-05-06  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/ConsoleApp.cpp, src/libpsid64/psid64.cpp, include/psid64/psid64.h:
+	pass strings by reference to Psid64 member functions
+
+	* macros/sidtune.m4: fixed m4 warnings
+
+2005-05-05  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* include/sidplay/utils/SidTuneMod.h, include/sidplay/utils/libini.h, src/sidtune/IconInfo.cpp, src/sidtune/InfoFile.cpp, src/sidtune/MUS.cpp, src/sidtune/Makefile.am, src/sidtune/PSID.cpp, src/sidtune/SidTune.cpp, src/sidtune/SidTuneCfg.h, src/sidtune/SidTuneTools.cpp, src/sidtune/SidTuneTools.h, src/sidtune/p00.cpp, src/sidtune/prg.cpp, src/sidutils/SidDatabase.cpp, src/sidutils/SidTuneMod.cpp, src/sidutils/ini/headings.i, src/sidutils/ini/ini.cpp, src/sidutils/ini/ini.h, src/sidutils/ini/keys.i, src/sidutils/ini/list.h, src/sidutils/ini/list.i, src/sidutils/ini/types.i, include/sidplay/SidTune.h:
+	updated sidtune and sidutils
+
+	* include/sidplay/SmartPtr.h:
+	updated with latest version from sidplay2 to fix compiler warnings
+
+	* ChangeLog: update changelog for version 0.7
+
+	* NEWS: added song selection using + and - keys
+
+2004-08-05  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/psid64.cpp, src/libpsid64/psidboot.a65, src/libpsid64/psidboot.h:
+	fixed incompatibility with various compressors (e.g. pucrunch, exomizer)
+
+	* README: reset computer not available in minimal driver
+
+	* README, src/libpsid64/psiddrv.a65, src/libpsid64/psidextdrv.h:
+	added next/previous song selection
+
+	* src/libpsid64/psid64.cpp, src/libpsid64/psiddrv.a65, src/libpsid64/psidextdrv.h:
+	display song number of song that is playing
+
+	* src/libpsid64/psiddrv.h, src/libpsid64/psidextdrv.h:
+	regenerated due to changes to psiddrv.a65
+
+	* include/psid64/psid64.h, src/libpsid64/psid64.cpp:
+	put end-of-text spaces at beginning of scroll text so that the first character
+	that appears in the scroll text has the right color
+
+	* src/libpsid64/psiddrv.a65:
+	created separate keyboard row and column tables to gain a few bytes in the
+	keyboard code
+
+2004-08-04  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* NEWS: updated 0.7 items
+
+	* Makefile.am, src/libpsid64/Makefile.am, src/libpsid64/psid64.cpp, src/libpsid64/psidboot.h, src/libpsid64/psiddrv.a65, src/libpsid64/psiddrv.h, src/libpsid64/psidextdrv.h, src/libpsid64/reloc65.cpp, src/libpsid64/reloc65.h:
+	added resolving of undefined references to the relocation code
+
+2004-07-26  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/ConsoleApp.cpp:
+	Fixed a character formatting bug that was introduced while converting the
+	option parser's C code to C++.
+
+2004-07-25  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* TODO: Added future enhancements suggested by users
+
+	* Doxyfile.in, configure.ac: Added Doxygen configuration file
+
+	* include/psid64/psid64.h: added Doxygen comments
+
+2004-07-20  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/Makefile.am: Turned on smooth scroll flag
+
+	* src/libpsid64/psiddrv.a65: layout change
+
+2003-05-24  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/psidboot.a65, src/libpsid64/psiddrv.a65:
+	Added random number generator support (CIA 1 timer A only)
+
+2003-05-23  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/psidboot.a65, src/libpsid64/psid64.cpp, src/libpsid64/psiddrv.a65:
+	Pass default song number via boot loader.
+
+	* src/libpsid64/psiddrv.a65:
+	Moved irqjob to front of driver code to ensure that the high byte of
+	irqjob and irqret are equal. Subsequently removed the setting of the
+	irq vector's high byte.
+
+	* src/libpsid64/psiddrv.a65: Enabled interrupts during screen updates.
+
+	* src/libpsid64/psiddrv.a65, src/libpsid64/psidboot.a65:
+	Preliminary smooth scroll support.
+
+	* src/libpsid64/psidboot.a65:
+	Removed SID initialization as this is done in the driver code now.
+
+	* src/libpsid64/psiddrv.a65: Clear SID registers.
+
+	* src/libpsid64/psid64.cpp, src/libpsid64/psiddrv.a65:
+	Optimized driver code by changing the way init/play are passed.
+	Moved decision on setting irq vectors from driver to C++, eliminating the
+	need of the load vector.
+
+2003-05-11  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/psiddrv.a65, src/libpsid64/psiddrv.h, src/libpsid64/psidextdrv.h:
+	don't clear VIC IRQs in irqret
+	RSIDs use default environment of CIA1 only
+
+	* include/psid64/psid64.h: added iomap member function
+
+	* src/libpsid64/psid64.cpp, src/libpsid64/psiddrv.a65, src/libpsid64/psiddrv.h, src/libpsid64/psidextdrv.h:
+	iomap calculation moved to C++ code, player environment more like sidplay2
+
+	* configure.ac: updated version number
+
+2003-05-01  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* configure.ac: fixed checking of boolean support (bug 730043)
+
+2003-04-23  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/sidutils/ini/keys.i, src/sidutils/ini/list.i, src/sidutils/ini/types.i, src/sidutils/ini/ini.cpp, src/sidutils/ini/ini.h, src/sidutils/ini/keys.h, src/sidutils/SidTuneMod.cpp, src/sidutils/ini/headings.h, src/sidutils/ini/headings.i, src/sidutils/SidDatabase.cpp, include/sidplay/utils/SidTuneMod.h, include/sidplay/utils/libini.h, include/sidplay/utils/SidDatabase.h:
+	synchronized sources with sidplay2
+
+	* src/libpsid64/psid64.cpp:
+	re-ordered member initializers of class Psid64 to match declaration order
+
+	* src/libpsid64/psidboot.a65: updated basic line number
+
+	* src/libpsid64/psiddrv.a65:
+	implemented inst/del key to toggle screen on and off
+
+	* src/libpsid64/psid64.cpp, src/libpsid64/psidboot.a65:
+	show all 31 characters of the PSID header
+
+2003-04-22  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/libpsid64/Makefile.am:
+	GNU sed version 4.0.5 does not seem to like the \w\w RE, replaced by a POSIX
+	1003.2 RE.
+
+	* ChangeLog: update changelog for version 0.6
+
+	* include/psid64/psid64.h:
+	removed extra qualification `Psid64::' on members
+
+	* NEWS: updated text for release 0.6
+
+	* NEWS: New in version 0.6
+
+	* configure.ac: updated version number
+
+	* ChangeLog: changes in release 0.6
+
+	* include/sidplay/sidint.h: generated file
+
+2003-04-13  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* autogen.sh: run autoheader to generate src/config.h.in
+
+	* depcomp, install-sh, missing, mkinstalldirs:
+	removed files from automake
+
+	* include/sidplay/Buffer.h, include/sidplay/SidTune.h, include/sidplay/SmartPtr.h, include/sidplay/sidconfig.h.in, include/sidplay/sidendian.h, include/sidplay/sidint.h, include/sidplay/sidtypes.h, include/sidplay/utils/SidDatabase.h, include/sidplay/utils/SidTuneMod.h, include/sidplay/utils/libini.h, macros/ac_compile_check_sizeof.m4, macros/ac_create_stdint_h.m4, macros/sidtune.m4, include/psid64/psid64.h, acinclude.m4, configure, configure.in, Makefile.am, Makefile.in, aclocal.m4, configure.ac, src/libpsid64/Makefile.am, src/libpsid64/psid64.cpp, src/libpsid64/psidboot.a65, src/libpsid64/psidboot.h, src/libpsid64/psiddrv.a65, src/libpsid64/psiddrv.h, src/libpsid64/psidextdrv.h, src/libpsid64/reloc65.cpp, src/libpsid64/reloc65.h, src/libpsid64/screen.cpp, src/libpsid64/screen.h, src/libpsid64/stilview/README.txt, src/libpsid64/stilview/STILView-config.patch, src/libpsid64/stilview/stil.cpp, src/libpsid64/stilview/stil.h, src/libpsid64/stilview/stilcomm.cpp, src/libpsid64/stilview/stilcomm.h, src/libpsid64/stilview/stildefs.h, src/sidtune/IconInfo.cpp, src/sidtune/InfoFile.cpp, src/sidtune/MUS.cpp, src/sidtune/Makefile.am, src/sidtune/PP20.cpp, src/sidtune/PP20.h, src/sidtune/PP20_Defs.h, src/sidtune/PSID.cpp, src/sidtune/SidTune.cpp, src/sidtune/SidTuneCfg.h, src/sidtune/SidTuneTools.cpp, src/sidtune/SidTuneTools.h, src/sidutils/MD5/MD5.cpp, src/sidutils/MD5/MD5.h, src/sidutils/MD5/MD5_Defs.h, src/sidutils/MD5/Makefile.am, src/sidutils/Makefile.am, src/sidutils/SidDatabase.cpp, src/sidutils/SidTuneMod.cpp, src/sidutils/ini/Makefile.am, src/sidutils/ini/headings.h, src/sidutils/ini/headings.i, src/sidutils/ini/ini.cpp, src/sidutils/ini/ini.h, src/sidutils/ini/keys.h, src/sidutils/ini/keys.i, src/sidutils/ini/list.h, src/sidutils/ini/list.i, src/sidutils/ini/types.i, src/Makefile.in, src/config.h.in, src/datatypes.h, src/main.c, src/main.cpp, src/psid.c, src/psid.h, src/psidboot.a65, src/psidboot.h, src/psiddrv.a65, src/psiddrv.h, src/psidextdrv.h, src/reloc65.c, src/reloc65.h, src/screen.c, src/screen.h, src/stamp-h.in, src/stilwrapper.cc, src/stilwrapper.h, src/ConsoleApp.cpp, src/ConsoleApp.h:
+	switched to C++
+
+	* src/Makefile.am: added C++ source files
+
+	* psid64.spec.in: added library and header file
+
+	* autogen.sh: added script to set up the build system
+
+2002-12-15  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/main.c, src/psidboot.a65, src/psidboot.h, src/psiddrv.a65, src/psiddrv.h, src/psidextdrv.h:
+	keep value of $02a6 and use it as pal/ntsc flag
+
+2002-11-21  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* configure, configure.in: check for snprintf
+
+	* src/config.h.in: Autoheader added HAVE_SNPRINTF
+
+2002-11-08  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* ChangeLog: changes in release 0.5
+
+	* psid64.spec.in: upgraded to RPM 4.1
+
+	* NEWS, TODO: updated for release 0.5
+
+	* README: updated command line arguments section
+
+2002-11-07  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* depcomp, INSTALL, install-sh, missing, mkinstalldirs, Makefile.in, aclocal.m4, configure, src/Makefile.in, src/config.h.in:
+	upgraded to automake 1.6.3
+
+	* src/Makefile.am: fixed AM_CFLAGS for automake 1.6.3
+
+	* src/main.c:
+	Implemented screen blanking to improve audio quality when using the RF modulated output of your C64.
+
+	* src/main.c, src/psidboot.a65, src/psidboot.h, src/psiddrv.a65, src/psiddrv.h, src/psidextdrv.h:
+	First steps towards providing the default power on environment: no longer trash zero page with copy routine and don't clear 0x200-0x3ff. The driver code assumes I/O at 0xd000-0xdfff is available after init to allow playback of real C64 digi tunes.
+
+2002-11-03  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/psidboot.a65, src/psidboot.h, src/psiddrv.a65, src/psiddrv.h, src/psidextdrv.h, src/main.c:
+	Implemented feature request 534453: handle init functions that jump to $A7AE
+	by modifying the stop vector at $0328.
+
+2002-10-27  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/main.c, src/psid.c, src/psid.h: Implemented reading of RSID files
+
+2002-10-26  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* configure: updated version number
+
+	* src/psidboot.h: extended information line area
+
+	* src/main.c:
+	check that the relocation information does not use the following
+	memory areas: 0x0000-0x03FF, 0xA000-0xBFFF and 0xD000-0xFFFF
+
+2002-10-03  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/psidboot.a65: added displaying of PSID header flags
+
+	* src/main.c: added error message for incorrect relocation information
+
+	* src/psid.h: added macros for PSID header flags
+
+	* configure.in: updated version number
+
+2002-03-24  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* ChangeLog: changes in release 0.4
+
+	* src/stilwrapper.cc, src/stilwrapper.h: added wrappers for STILView
+
+	* Makefile.in, configure: regenerated
+
+	* NEWS, TODO: updated for release 0.4
+
+	* src/Makefile.in, src/config.h.in: regenerated
+
+	* src/psidboot.h, src/psiddrv.h, src/psidextdrv.h:
+	*** empty log message ***
+
+	* src/screen.c, src/screen.h:
+	improved iso2pet and made it a global function
+
+	* configure.in: updated version number
+
+	* src/main.c: added STIL support
+
+	* src/psidboot.a65, src/psiddrv.a65: added STIL scroller code
+
+	* src/Makefile.am:
+	added stilview subdirectory, stilwrapper.cc and stilwrapper.h
+
+2001-11-11  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* ChangeLog: *** empty log message ***
+
+	* Makefile.in, aclocal.m4, configure, src/Makefile.in:
+	changes due to rerunning autoconf/automake
+
+	* NEWS: updated news
+
+	* src/main.c, src/psid.c:
+	use b in fopen() calls to ensure treating files as binary
+
+	* configure.in: updated version number
+
+2001-11-10  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* ChangeLog: *** empty log message ***
+
+	* NEWS: Added features implemented in release 0.2
+
+	* README: Updated the usage section.
+
+	* TODO:
+	Removed implemented features from TODO list. Added some new possible features.
+
+	* src/main.c: Added comments. Updated usage text.
+
+2001-10-08  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* configure, configure.in:
+	updated version number, added checks for getopt_long
+
+	* src/.o65, src/config.h.in, src/main.c, src/psidboot.a65, src/psidboot.h, src/psiddrv.a65:
+	remove the accidently added file .o65
+
+2001-09-08  Roland Hermans  <rolandh@users.sourceforge.net>
+
+	* src/datatypes.h, src/screen.c, src/screen.h: New file.
+
+	* src/datatypes.h, src/screen.c, src/screen.h: initial import into CVS
+
+	* src/psid.c: New file.
+
+	* src/psid.c: initial import into CVS
+
+	* src/psidextdrv.h: New file.
+
+	* src/psidextdrv.h: initial import into CVS
+
+	* src/psiddrv.h: New file.
+
+	* src/psiddrv.h: initial import into CVS
+
+	* src/psidboot.h: New file.
+
+	* src/psidboot.h: initial import into CVS
+
+	* src/.o65, src/Makefile.in, src/reloc65.h: New file.
+
+	* src/.o65, src/Makefile.in, src/reloc65.h: initial import into CVS
+
+	* src/Makefile.am, src/psid.h: New file.
+
+	* src/Makefile.am, src/psid.h: initial import into CVS
+
+	* src/config.h.in, src/psiddrv.a65, src/stamp-h.in: New file.
+
+	* src/config.h.in, src/psiddrv.a65, src/stamp-h.in:
+	initial import into CVS
+
+	* src/psidboot.a65, src/reloc65.c: New file.
+
+	* src/psidboot.a65, src/reloc65.c: initial import into CVS
+
+	* src/main.c: New file.
+
+	* src/main.c: initial import into CVS
+
+	* README, TODO, psid64.spec.in: New file.
+
+	* README, TODO, psid64.spec.in: initial import into CVS
+
+	* Makefile.in, NEWS: New file.
+
+	* Makefile.in, NEWS: initial import into CVS
+
+	* INSTALL, Makefile.am: New file.
+
+	* INSTALL, Makefile.am: initial import into CVS
+
+	* COPYING: New file.
+
+	* COPYING: initial import into CVS
+
+	* configure, configure.in: New file.
+
+	* configure, configure.in: initial import into CVS
+
+	* missing: New file.
+
+	* missing: initial import into CVS
+
+	* install-sh, mkinstalldirs: New file.
+
+	* install-sh, mkinstalldirs: initial import into CVS
+
+	* AUTHORS, ChangeLog, aclocal.m4: New file.
+
+	* AUTHORS, ChangeLog, aclocal.m4: initial import into CVS
+
+	* acinclude.m4: New file.
+
+	* acinclude.m4: initial import into CVS
+

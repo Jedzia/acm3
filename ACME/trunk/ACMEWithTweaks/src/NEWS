@@ -1,0 +1,5 @@
+Version 0.94.0.0:
+
+* !loadlabel		Load label addresses from binary file. See docs/AllPOs.txt.
+* -vl, --vicelabeldump	label dump commandline switch.
+* --msvc		commandline switch.

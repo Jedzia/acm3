@@ -1,0 +1,37 @@
+acme-section.o: ../src/section.c ../src/config.h ../src/platform.h \
+ ../src/_std.h ../src/dynabuf.h ../src/global.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/stdio.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/_mingw.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/include/stddef.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/include/stdarg.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/sys/types.h \
+ c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/stdlib.h \
+ ../src/input.h ../src/tree.h ../src/section.h
+
+../src/config.h:
+
+../src/platform.h:
+
+../src/_std.h:
+
+../src/dynabuf.h:
+
+../src/global.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/stdio.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/_mingw.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/include/stddef.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/include/stdarg.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/sys/types.h:
+
+c:\mingw\bin\../lib/gcc/i686-pc-mingw32/4.5.4/../../../../include/stdlib.h:
+
+../src/input.h:
+
+../src/tree.h:
+
+../src/section.h:

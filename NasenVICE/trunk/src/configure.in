@@ -1,0 +1,94 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_PREREQ([2.63])
+AC_INIT(NasenVICE)
+AC_CONFIG_SRCDIR([main.cpp])
+AM_CONFIG_HEADER(include/nv_config.h)
+
+#AC_CONFIG_AUX_DIRS($srcdir/config)
+AC_CONFIG_AUX_DIR(config)
+
+#AM_INIT_AUTOMAKE([foreign]nasenvice, 1.0)
+AM_INIT_AUTOMAKE(nasenvice, 1.0)
+dnl *************************************
+dnl the version info
+dnl *************************************
+version_info="1:0:0"
+release_info="1.0.0"
+AC_SUBST(version_info)
+AC_SUBST(release_info)
+
+
+dnl Set up the compiler and linker flags
+dnl Not needed ... INCLUDES directive in
+dnl Makefile.am
+#INCLUDE="-I$srcdir/include -I$srcdir/libcrx"
+#EXTRA_CFLAGS="$INCLUDE $BASE_CFLAGS"
+#AC_SUBST(EXTRA_CFLAGS)
+
+dnl *************************************
+dnl General Compiler setup
+dnl *************************************
+AC_PROG_AWK
+AC_PROG_CXX
+AC_PROG_CC
+AM_PROG_CC_STDC
+AC_C_CONST
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+#AM_PROG_LEX
+#AC_PROG_YACC
+
+
+dnl *************************************
+dnl Libtool
+dnl *************************************
+AC_LIBTOOL_WIN32_DLL
+define([AC_LIBTOOL_LANG_F77_CONFIG], [:])dnl do not generate F77 Libtool Tags
+AC_PROG_LIBTOOL
+
+
+dnl *************************************
+dnl Windows Version Header Stuff
+dnl *************************************
+if test -z "$host_alias"; then
+    hostaliaswindres=
+else
+    hostaliaswindres="$host_alias-windres"
+fi
+AC_CHECK_PROGS(WINDRES, [windres $hostaliaswindres $host_os-windres])
+AC_SUBST(WINDRES)
+
+AM_CONDITIONAL(USE_DLLVERSIONHEADER, false)
+lt_enable_auto_import=""
+case "$host_os" in
+   mingw* | cegcc* | cygwin* )
+      lt_enable_auto_import="-Wl,--enable-auto-import"
+      AM_CONDITIONAL(USE_DLLVERSIONHEADER, true)
+      pg_use_win="-D_WIN32"
+      echo Using windres dll versioning for HOST "$host_os".
+esac
+AC_SUBST(lt_enable_auto_import)
+AC_SUBST(pg_use_win)
+
+
+dnl *************************************
+dnl mingw check
+dnl *************************************
+pg_use_mingw=""
+case "$host_os" in
+   mingw* )
+      pg_use_mingw="-DMSYS"
+esac
+AC_SUBST(pg_use_mingw)
+
+
+
+AC_CONFIG_FILES([
+                 libcrx/Makefile
+                 librx/Makefile])
+
+
+AC_OUTPUT(Makefile)
+
