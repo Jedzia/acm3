@@ -34,7 +34,10 @@
 #define errno_t int
 #else
 #if defined(MSYS) && !defined(errno_t)
+#if defined(__MINGW64__) &&  (__GNUC__ < 8)
+#else
 #define errno_t int
+#endif
 #endif
 #endif
 
