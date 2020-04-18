@@ -1,0 +1,5 @@
+*.o
+*.Plo
+*.Po
+/ACME/trunk/ACMEWithTweaks/msysbuild/win32/.libs/*.o
+/ACME/trunk/ACMEWithTweaks/msysbuild/win32/*.o
